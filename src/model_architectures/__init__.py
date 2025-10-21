@@ -5,6 +5,7 @@ from model_architectures.dav2_head import DepthAnythingV2Head
 from model_architectures.dpt_head import DPTHead
 from model_architectures.object_detection_head import ObjectDetectionHead
 from model_architectures.semantic_segmentation_head import SemanticSegmentationHead
+from model_architectures.passthru_head import Dinov2PassthroughHead
 
 __all__ = [
     "DepthAnythingV2",
@@ -13,4 +14,5 @@ __all__ = [
     "DPTHead",
     "ObjectDetectionHead",
     "SemanticSegmentationHead",
+    "Dinov2PassthroughHead",
 ]

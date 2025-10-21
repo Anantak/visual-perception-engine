@@ -355,7 +355,8 @@ class ObjectDetectionHead(ModelInterfaceBase, ObjectDetector):
         if original_image is not None:
             x = original_image
             if any([x.shape[0] != i and x.shape[2] == i for i in [1, 3]]):
-                x = x.permute(2, 0, 1)
+                # x = x.transpose(2, 0, 1)
+                x = torch.from_numpy(x).permute(2, 0, 1)
         else:
             shape = (3, target_height, target_width)
             x = torch.zeros(shape).to(torch.uint8)
@@ -366,7 +367,7 @@ class ObjectDetectionHead(ModelInterfaceBase, ObjectDetector):
         pred_labels = [
             ObjectDetector.label_to_cat(label.item()) + f": {score:.3f}" for label, score in zip(lbl, scores)
         ]
-        output_image = draw_bounding_boxes(x, box, pred_labels, colors="red", width=5, font_size=25)
+        output_image = draw_bounding_boxes(x, box, pred_labels, colors="red", width=5)
         annotated_image = output_image.permute(1, 2, 0).cpu().numpy()
         return annotated_image
 

@@ -126,6 +126,8 @@ class ModelRegistry:
             trt_model.load_state_dict(torch.load(model_card.path2weights))
             model = CustomTRTModule(trt_model, model)
             model.eval()
+        elif model_card.framework == "ana-pca":
+            pass
         else:
             model.load_state_dict(torch.load(model_card.path2weights, map_location="cuda"))
             model = model.to(dtype=PRECISION_MAP_TORCH[model_card.precision], device=torch.device("cuda"))

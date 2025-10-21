@@ -394,7 +394,7 @@ class Engine:
 
         return output
     
-    def visualize_raw_output(self, head_id: int, raw_output: dict[str, np.ndarray], original_image: None | np.ndarray = None) -> np.ndarray:
+    def visualize_raw_output(self, head_id: int, raw_output: dict[str, torch.Tensor|np.ndarray], original_image: None | torch.Tensor | np.ndarray = None) -> np.ndarray:
         head_cls = getattr(model_architectures, self.model_heads[head_id].model_card.model_class_name)
         return head_cls.visualize_output(raw_output, original_image) 
 
